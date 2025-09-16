@@ -36,40 +36,52 @@ caption.addEventListener('mouseover', () => {
 
 //Ajouter des boutons (en javascript) pour faire bouger l'image et le tableau (ajouter ou supprimer la classe 'shake')
 // @param (*)
-
-const shake = (element) => {
-    if (!element.classList.contains('shake')){
-        console.log("Shake the element", element);
+function shakeUnshake(elementId){
+    const element = document.getElementById(elementId);
+    if (!element) return; // Sécurité si l'id n'existe pas
+    if (element.classList.contains('shake')){
+        console.log("Stop shaking the element", elementId);
+        element.classList.remove('shake');
+    } else {
+        console.log("Shake the element", elementId);
         element.classList.add('shake');
     }
 }
 
-const unshake = (element) => {
-    if (element.classList.contains("shake")){
-        console.log("Stop shaking the element", element);
-        element.classList.remove('shake');
-    }
-}
+
+// const shake = (element) => {
+//     if (!element.classList.contains('shake')){
+//         console.log("Shake the element", element);
+//         element.classList.add('shake');
+//     }
+// }
+
+// const unshake = (element) => {
+//     if (element.classList.contains("shake")){
+//         console.log("Stop shaking the element", element);
+//         element.classList.remove('shake');
+//     }
+// }
 
 let img = document.querySelector('img');
 let btnShakeImg = document.createElement('button');
 btnShakeImg.textContent = "Shake Image";
 img.after(btnShakeImg);
-let btnShakeStopImg = document.createElement('button');
-btnShakeStopImg.textContent = "Stop Shake Image";
-btnShakeImg.after(btnShakeStopImg);
-btnShakeImg.addEventListener('click', () => shake(img));
-btnShakeStopImg.addEventListener('click', () => unshake(img));
+// let btnShakeStopImg = document.createElement('button');
+// btnShakeStopImg.textContent = "Stop Shake Image";
+// btnShakeImg.after(btnShakeStopImg);
+btnShakeImg.addEventListener('click', () => shakeUnshake('myImg'));
+// btnShakeStopImg.addEventListener('click', () => unshake(img));
 
 let table = document.querySelector('table');
 let btnShakeTable = document.createElement('button');
 btnShakeTable.textContent = "Shake Table";
 table.after(btnShakeTable);
-let btnShakeStopTable = document.createElement('button');
-btnShakeStopTable.textContent = "Stop Shake Table";
-btnShakeTable.after(btnShakeStopTable); 
-btnShakeTable.addEventListener('click', () => shake(table));
-btnShakeStopTable.addEventListener('click', () => unshake(table));
+// let btnShakeStopTable = document.createElement('button');
+// btnShakeStopTable.textContent = "Stop Shake Table";
+// btnShakeTable.after(btnShakeStopTable); 
+btnShakeTable.addEventListener('click', () => shakeUnshake("table-users"));
+// btnShakeStopTable.addEventListener('click', () => unshake(table));
 
 
 // afficher dans la concole pour débuguer
